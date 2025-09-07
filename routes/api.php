@@ -8,12 +8,21 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get("test", function(){
-    return ["name"=>"Sandeep Rathod", "Age"=>"40"];
-});
+
 
 /* Authentication Routes */
-Route::post("signup", [ClientAuthController::class, 'signup']);
-Route::post("login", [ClientAuthController::class, 'login']);
-Route::post("setotp", [ClientAuthController::class, 'setotp']);
-Route::post("forgot", [ClientAuthController::class, 'forgot']);
+Route::post("signup", [ClientAuthController::class, "signup"]);
+Route::post("login", [ClientAuthController::class, "login"]);
+Route::post("setotp", [ClientAuthController::class, "setotp"]);
+Route::post("forgot", [ClientAuthController::class, "forgot"]);
+Route::get("login", [ClientAuthController::class, "loginerr"])->name("login");
+
+Route::group(["middleware"=>"auth:sanctum"], function(){
+
+    /* All Sanctum Routes goes here */
+
+    Route::get("test", function(){
+        return ["name"=>"Sandeep Rathod", "Age"=>"40"];
+    });
+
+});

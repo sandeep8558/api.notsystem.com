@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ClientAuthController extends Controller
 {
+
     public function signup(Request $request){
 
         /* Response Array */
@@ -164,6 +165,12 @@ class ClientAuthController extends Controller
         $user->update(["otp"=>$otp]);
         $response["success"] = true;
         $response["message"] = "OTP sent to your email address";
+        return $response;
+    }
+
+    public function loginerr(){
+        $response["success"] = false;
+        $response["message"] = "You do not have permission to access the page";
         return $response;
     }
 }
