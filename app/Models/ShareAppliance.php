@@ -10,4 +10,13 @@ class ShareAppliance extends Model
         'user_id',
         'appliance_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function appliance(){
+        return $this->belongsTo(Appliance::class);
+    }
+
 }

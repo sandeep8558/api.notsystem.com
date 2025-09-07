@@ -16,4 +16,28 @@ class Appliance extends Model
         'serial_no',
         'port',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function place(){
+        return $this->belongsTo(Place::class);
+    }
+
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
+
+    public function machine(){
+        return $this->belongsTo(Machine::class);
+    }
+
+    public function timers(){
+        return $this->hasMany(Timer::class);
+    }
+
+    public function share_appliances(){
+        return $this->hasMany(ShareAppliance::class);
+    }
 }

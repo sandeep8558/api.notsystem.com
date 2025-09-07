@@ -47,4 +47,32 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function places(){
+        return $this->hasMany(Place::class);
+    }
+
+    public function rooms(){
+        return $this->hasMany(Room::class);
+    }
+
+    public function machines(){
+        return $this->hasMany(Machine::class);
+    }
+
+    public function appliances(){
+        return $this->hasMany(Appliance::class);
+    }
+
+    public function share_places(){
+        return $this->hasMany(SharePlace::class);
+    }
+
+    public function share_rooms(){
+        return $this->hasMany(ShareRoom::class);
+    }
+
+    public function share_appliances(){
+        return $this->hasMany(ShareAppliance::class);
+    }
 }

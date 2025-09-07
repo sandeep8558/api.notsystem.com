@@ -16,4 +16,21 @@ class Machine extends Model
         'state',
         'ts',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function place(){
+        return $this->belongsTo(Place::class);
+    }
+
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
+
+    public function appliances(){
+        return $this->hasMany(Appliance::class);
+    }
+
 }

@@ -16,4 +16,9 @@ class Timer extends Model
         'to_time',
         'is_timer_off',
     ];
+
+    public function appliance(){
+        return $this->belongsTo(Appliance::class);
+    }
+
 }
