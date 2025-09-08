@@ -13,7 +13,7 @@ class ClientAuthController extends Controller
     public function signup(Request $request){
 
         /* Response Array */
-        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null];
+        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null, "errors"=>null ];
 
         /* Validate User Data */
         $rules = [
@@ -27,7 +27,8 @@ class ClientAuthController extends Controller
         if($validation->fails()){
             $response["success"] = false;
             $response["message"] = "Validation Failed";
-            return $validation->errors();
+            $response["errors"] = $validation->errors();
+            return $response;
         }
 
         /* Add User to Database */
@@ -47,7 +48,7 @@ class ClientAuthController extends Controller
     public function login(Request $request){
 
         /* Response Array */
-        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null];
+        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null, "errors"=>null];
 
         /* Validate User Data */
         $rules = [
@@ -60,7 +61,8 @@ class ClientAuthController extends Controller
         if($validation->fails()){
             $response["success"] = false;
             $response["message"] = "Validation Failed";
-            return $validation->errors();
+            $response["errors"] = $validation->errors();
+            return $response;
         }
 
         $user = User::where("email", $request->email)->first();
@@ -86,7 +88,7 @@ class ClientAuthController extends Controller
 
     public function forgot(Request $request){
 
-        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null];
+        $response = ["token"=>null, "user"=>null, "success"=>null, "message"=>null, "errors"=>null];
 
         /* Validate User Data */
         $rules = [
@@ -100,7 +102,8 @@ class ClientAuthController extends Controller
         if($validation->fails()){
             $response["success"] = false;
             $response["message"] = "Validation Failed";
-            return $validation->errors();
+            $response["errors"] = $validation->errors();
+            return $response;
         }
 
         /* Get User */
@@ -135,7 +138,7 @@ class ClientAuthController extends Controller
     public function setotp(Request $request){
 
         /* Response Array */
-        $response = ["success"=>null, "message"=>null];
+        $response = ["success"=>null, "message"=>null, "errors"=>null];
 
         /* Validate User Data */
         $rules = [
@@ -147,7 +150,8 @@ class ClientAuthController extends Controller
         if($validation->fails()){
             $response["success"] = false;
             $response["message"] = "Validation Failed";
-            return $validation->errors();
+            $response["errors"] = $validation->errors();
+            return $response;
         }
 
         /* Get User */
