@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
+use App\Mail\SendOTP;
+use Illuminate\Support\Facades\Mail;
+
 class ClientAuthController extends Controller
 {
 
@@ -129,7 +132,7 @@ class ClientAuthController extends Controller
         $response["token"] = $token->plainTextToken;
         $response["user"] = $user;
         $response["success"] = true;
-        $response["message"] = "Password Reseted Successful";
+        $response["message"] = "Password Reset Successful";
         return $response;
 
         return ["message"=>"Forgot Working"];
@@ -167,6 +170,10 @@ class ClientAuthController extends Controller
         /* Update OTP */
         $otp = mt_rand(100000, 999999);
         $user->update(["otp"=>$otp]);
+
+        Mail::to($user)->send(new SendOTP($otp));
+
+
         $response["success"] = true;
         $response["message"] = "OTP sent to your email address";
         return $response;
