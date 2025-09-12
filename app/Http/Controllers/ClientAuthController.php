@@ -184,4 +184,13 @@ class ClientAuthController extends Controller
         $response["message"] = "You do not have permission to access the page";
         return $response;
     }
+
+    public function user(Request $request){
+        $response = ["authenticated"=>false];
+        if($user = $request->user()){
+            $email = $user->email;
+            $response["authenticated"] = true;
+        }
+        return $response;
+    }
 }

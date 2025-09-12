@@ -4,16 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
 
-Route::get('/user', function (Request $request) {
-    $response = ["success"=>false,"name"=>null];
-    if($user = $request->user()){
-        $response["success"] = true;
-        $response["name"] = $user->name;
-    }
-    return $response;
-})->middleware('auth:sanctum');
-
-
+Route::get("user", [ClientAuthController::class, "user"])->middleware('auth:sanctum');
 
 /* Authentication Routes */
 Route::post("signup", [ClientAuthController::class, "signup"]);
