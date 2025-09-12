@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->index();
             $table->text('place_name');
+            $table->text('address');
             $table->text('ssid');
             $table->text('pswd');
             $table->timestamps();

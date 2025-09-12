@@ -18,9 +18,9 @@ return new class extends Migration
             $table->bigInteger('place_id')->index();
             $table->bigInteger('room_id')->index();
             $table->bigInteger('machine_id')->index();
+            $table->bigInteger('serial_no')->index();
             $table->text('appliance_name');
             $table->text('appliance_logo');
-            $table->text('serial_no');
             $table->text('port');
 
             $table->timestamps();

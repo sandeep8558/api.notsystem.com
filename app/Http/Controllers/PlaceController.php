@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Place;
+use Illuminate\Support\Facades\Validator;
 
 class PlaceController extends Controller
 {
@@ -14,7 +15,7 @@ class PlaceController extends Controller
     Delete Rooms,Machines,Appliances,Timers,SharePlace,ShareRoom,ShareAppliance
     */
 
-    public function places(){
+    public function places(Request $request){
         $user = $request->user();
         return $user->places()
         ->with(["rooms.share_rooms"])
@@ -33,6 +34,7 @@ class PlaceController extends Controller
         /* Validate the Request */
         $rules = [
             "place_name" => "required",
+            "address" => "required",
             "ssid" => "required",
             "pswd" => "required"
         ];
@@ -66,6 +68,7 @@ class PlaceController extends Controller
         /* Validate the Request */
         $rules = [
             "place_name" => "required",
+            "address" => "required",
             "ssid" => "required",
             "pswd" => "required",
             "id" => "required",
@@ -97,7 +100,9 @@ class PlaceController extends Controller
         $place = Place::find($request->id);
 
         /* ShareRoom Deleted */
-        $place->rooms()->share_rooms()->delete();
+        foreach($place->rooms() as $room){
+            $room->share_rooms()->delete();
+        }
 
         /* Rooms Deleted */
         $place->rooms()->delete();
@@ -106,10 +111,14 @@ class PlaceController extends Controller
         $place->machines()->delete();
 
         /* ShareAppliance Deleted */
-        $place->appliances()->share_appliances()->delete();
+        foreach($place->appliances() as $appliance){
+            $appliance->share_appliances()->delete();
+        }
 
         /* Timers Deleted */
-        $place->appliances()->timers()->delete();
+        foreach($place->appliances() as $appliance){
+            $appliance->timers()->delete();
+        }
 
         /* Appliances Deleted */
         $place->appliances()->delete();

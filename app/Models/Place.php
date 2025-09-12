@@ -9,6 +9,7 @@ class Place extends Model
     protected $fillable = [
         'user_id',
         'place_name',
+        'address',
         'ssid',
         'pswd',
     ];

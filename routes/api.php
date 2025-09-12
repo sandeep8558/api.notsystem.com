@@ -20,7 +20,7 @@ Route::group(["middleware"=>"auth:sanctum"], function(){
     Route::get("places", [PlaceController::class, "places"]);
     Route::post("places/add", [PlaceController::class, "add"]);
     Route::post("places/update", [PlaceController::class, "update"]);
-    Route::post("places/delete", [PlaceController::class, "delete"]);
+    Route::delete("places/delete", [PlaceController::class, "delete"]);
 
     /* All Sanctum Routes goes here */
 
