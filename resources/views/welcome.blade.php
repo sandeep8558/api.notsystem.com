@@ -56,6 +56,9 @@
                     <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae nobis repellat ut minima cumque est? Laborum, quisquam! Eligendi, nulla quia quidem ex consequuntur alias exercitationem repudiandae odio magni assumenda dignissimos maiores error?
                     </p>
+                    <a href="/git/pull">Update Software</a>
+                    <a href="/composer/install">Install</a>
+                    <a href="/migrate/fresh">Migrate</a>
                 </div>
             </main>
         </div>
