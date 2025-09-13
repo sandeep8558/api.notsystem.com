@@ -13,6 +13,9 @@ class PlaceController extends Controller
         $user = $request->user();
         return $user->places()
         ->with(["rooms.share_rooms"])
+        ->with("rooms", function($rooms){
+            $rooms->with('appliances');
+        })
         ->with(["machines"])
         ->with(["appliances.timers"])
         ->with(["appliances.share_appliances"])
