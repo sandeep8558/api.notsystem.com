@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PlaceController extends Controller
 {
-    /* 
-    Add Place
-    Update Place
-    Delete Place
-    Delete Rooms,Machines,Appliances,Timers,SharePlace,ShareRoom,ShareAppliance
-    */
 
     public function places(Request $request){
         $user = $request->user();
