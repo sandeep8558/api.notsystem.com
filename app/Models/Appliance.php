@@ -12,6 +12,7 @@ class Appliance extends Model
         'room_id',
         'machine_id',
         'appliance_name',
+        'appliance_type',
         'appliance_logo',
         'serial_no',
         'port',

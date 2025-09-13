@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ApplianceController;
 
 Route::get("user", [ClientAuthController::class, "user"])->middleware('auth:sanctum');
 
@@ -28,5 +29,11 @@ Route::group(["middleware"=>"auth:sanctum"], function(){
     Route::post("rooms/add", [RoomController::class, "add"]);
     Route::post("rooms/update", [RoomController::class, "update"]);
     Route::delete("rooms/delete", [RoomController::class, "delete"]);
+
+     /* Appliance Routes */
+    Route::get("appliances", [ApplianceController::class, "appliances"]);
+    Route::post("appliances/add", [ApplianceController::class, "add"]);
+    Route::post("appliances/update", [ApplianceController::class, "update"]);
+    Route::delete("appliances/delete", [ApplianceController::class, "delete"]);
 
 });

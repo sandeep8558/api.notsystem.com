@@ -17,11 +17,13 @@ return new class extends Migration
             $table->bigInteger('user_id')->index();
             $table->bigInteger('place_id')->index();
             $table->bigInteger('room_id')->index();
-            $table->bigInteger('machine_id')->index();
-            $table->bigInteger('serial_no')->index();
             $table->text('appliance_name');
-            $table->text('appliance_logo');
-            $table->text('port');
+            $table->set('appliance_type', ['Switch', 'Dimmer']);
+            $table->text('appliance_logo')->nullable();
+
+            $table->bigInteger('machine_id')->index()->default(0);
+            $table->bigInteger('serial_no')->index()->default(0);
+            $table->integer('port')->default(0);
 
             $table->timestamps();
         });
